@@ -38,6 +38,7 @@ jls_extract_var = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "users",
+    "data",
 ]
 INSTALLED_APPS = jls_extract_var
 
