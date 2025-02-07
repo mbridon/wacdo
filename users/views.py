@@ -35,6 +35,8 @@ def login_view(request):
 
             return redirect(home_view)
 
+        return render(request, "login.html", {"form": form, "error": "Identifiants incorrects"})
+
     else:
         form = AuthenticationForm()
 
