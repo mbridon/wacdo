@@ -82,20 +82,20 @@ class Migration(migrations.Migration):
                     "collaborator",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        to="data.collaborator",
+                        to="dashboard.collaborator",
                     ),
                 ),
                 (
                     "job",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="data.job"
+                        on_delete=django.db.models.deletion.CASCADE, to="dashboard.job"
                     ),
                 ),
                 (
                     "restaurant",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        to="data.restaurant",
+                        to="dashboard.restaurant",
                     ),
                 ),
             ],
