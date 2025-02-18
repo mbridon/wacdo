@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import CustomUserCreationForm
+from dashboard.views import RestaurantListView
 
 
 def home_view(request):
@@ -17,7 +18,7 @@ def register_view(request):
             user = form.save()
             login(request, user)
 
-            return redirect(home_view)
+            return redirect(RestaurantListView)
 
     else:
         form = CustomUserCreationForm()
@@ -33,7 +34,7 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
 
-            return redirect(home_view)
+            return redirect(RestaurantListView)
 
         return render(request, "login.html", {"form": form, "error": "Identifiants incorrects"})
 
