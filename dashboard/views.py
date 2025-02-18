@@ -12,9 +12,9 @@ class RestaurantListView(LoginRequiredMixin, ListView):
     model = Restaurant
 
     def all(self, request):
-        result = Restaurant.objects.all()
+        restaurants = Restaurant.objects.all()
 
-        return HttpResponse(result)
+        return HttpResponse(restaurants)
 
 
 class CreateRestaurantView(LoginRequiredMixin, CreateView):
