@@ -18,7 +18,7 @@ def register_view(request):
             user = form.save()
             login(request, user)
 
-            return redirect(RestaurantListView)
+            return redirect("restaurant-list")
 
     else:
         form = CustomUserCreationForm()
@@ -34,7 +34,7 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
 
-            return redirect(RestaurantListView)
+            return redirect("restaurant-list")
 
         return render(request, "login.html", {"form": form, "error": "Identifiants incorrects"})
 
