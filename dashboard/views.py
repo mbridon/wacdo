@@ -36,10 +36,7 @@ class CreateRestaurantView(LoginRequiredMixin, CreateView):
             return redirect("restaurant-list")
 
         else:
-            print("Invalid form")
-            print(form.errors)
-
-            return render(request, self.template_name, {"form": form, "error": "Données incorrectes"})
+            return render(request, self.template_name, {"form": form, "error": str(form.errors)})
 
 
 class UpdateRestaurantView(LoginRequiredMixin, UpdateView):
