@@ -31,7 +31,7 @@ class CreateRestaurantView(LoginRequiredMixin, CreateView):
         form = self.form_class(data=request.POST)
 
         if form.is_valid():
-            print(form.cleaned_data)
+            form.save(commit=True)
 
             return redirect("restaurant-list")
 
