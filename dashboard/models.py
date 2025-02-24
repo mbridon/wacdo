@@ -13,7 +13,7 @@ class Collaborator(models.Model):
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=60)
-    address = models.TextField()
+    address = models.TextField(max_length=600)
     post_code = models.CharField(max_length=5)
     city = models.CharField(max_length=60)
 
