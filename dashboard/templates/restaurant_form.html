@@ -9,13 +9,13 @@
     <form action="/dashboard/restaurant/new" method="post">
         {% csrf_token %}
         <id="name">Name: </id>
-        <input id="name" type="text" />
+        <input id="name" name="name" type="text" />
         <id="address">Address: </id>
-        <input id="address" type="text" />
+        <input id="address" name="address" type="text" />
         <id="city">City: </id>
-        <input id="city" type="text" />
+        <input id="city" name="city" type="text" />
         <id="zip_code">Zip Code: </id>
-        <input id="zip_code" type="text" />
+        <input id="post_code" name="post_code" type="text" />
         <input type="submit" />
     </form>
 </body>
