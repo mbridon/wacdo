@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from .forms import NewRestaurantForm
+from .forms import RestaurantForm
 from .models import Restaurant
 
 
@@ -19,11 +19,26 @@ class RestaurantListView(LoginRequiredMixin, ListView):
 
 class CreateRestaurantView(LoginRequiredMixin, CreateView):
     model = Restaurant
-    fields = ["name", "address", "post_code", "city"]
+    template_name = "restaurant_form.html"
+    form_class = RestaurantForm
 
-    def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        return super().form_valid(form)
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request):
+        form = self.form_class(data=request.POST)
+
+        if form.is_valid():
+            print(form.cleaned_data)
+
+            return redirect("restaurant-list")
+
+        else:
+            print("Invalid form")
+            
+        return render(request, self.template_name, {"form": form, "error": "Données incorrectes"})
 
 
 class UpdateRestaurantView(LoginRequiredMixin, UpdateView):
