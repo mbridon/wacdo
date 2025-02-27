@@ -41,9 +41,31 @@ class CreateRestaurantView(LoginRequiredMixin, CreateView):
 
 class UpdateRestaurantView(LoginRequiredMixin, UpdateView):
     model = Restaurant
-    fields = ["name", "address", "post_code", "city"]
+    template_name = "restaurant_form.html"
+    form_class = RestaurantForm
+
+    def get(self, request):
+        form = self.form_class()
+
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request):
+        form = self.form_class(data=request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+
+            return redirect("restaurant-list")
+
+        else:
+            return render(request, self.template_name, {"form": form, "error": str(form.errors)})
 
 
 class DeleteRestaurantView(LoginRequiredMixin, DeleteView):
     model = Restaurant
     success_url = reverse_lazy("restaurant-list")
+
+    def get(self, request, pk):
+        restaurant = Restaurant.objects.get(pk=pk)
+
+        return render(request, self.template_name, {"restaurant": restaurant})
