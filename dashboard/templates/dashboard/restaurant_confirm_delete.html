@@ -1,0 +1,8 @@
+<h1>Are you really sure you want to delete this restaurant?</h1>
+<form id="deletion_confirmation">
+    <p>{{ restaurant.name }}</p>
+    <p>{{ restaurant.address }}</p>
+    <p>{{ restaurant.city }}</p>
+    <p>{{ restaurant.post_code }}</p>
+    <input type="submit" value="Yes" action="/dashboard/restaurant/delete" method="post"/>
+</form>
