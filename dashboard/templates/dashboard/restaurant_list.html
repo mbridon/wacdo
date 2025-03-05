@@ -8,8 +8,19 @@
 <body>
     {% block content %}
         <h1>Restaurants</h1>
-        {% for restaurant in restaurants %}
-            {{ restaurant.name }}
+        # WTF, this merely prints "Restaurant object (1)Restaurant object (2)"
+        #      or <class 'dashboard.models.Restaurant'></class>     o_O
+        {% for restaurant in Restaurant.objects.all %}
+            <a href="{{ restaurant.get_absolute_url }}">
+                {{ restaurant.name }}
+            </a>"
+            <ul id="restaurants">
+                {{dir(restaurant)}}
+                {{ restaurant.name }}
+                {{ restaurant.address }}
+                {{ restaurant.post_code }}
+                {{ restaurant.city }}    
+            </ul>
         {% endfor %}
     {% endblock %}
 </body>

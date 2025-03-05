@@ -1,3 +1,5 @@
+import pprint
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -10,11 +12,13 @@ from .models import Restaurant
 
 class RestaurantListView(LoginRequiredMixin, ListView):
     model = Restaurant
+    template_name = "restaurant_list.html"
 
-    def all(self, request):
+    def get(self, request):
         restaurants = Restaurant.objects.all()
+        # WTF: the template doesn't print the actual list :-/
 
-        return HttpResponse(restaurants)
+        return HttpResponse(Restaurant, self.template_name)
 
 
 class CreateRestaurantView(LoginRequiredMixin, CreateView):
@@ -44,7 +48,7 @@ class UpdateRestaurantView(LoginRequiredMixin, UpdateView):
     template_name = "restaurant_form.html"
     form_class = RestaurantForm
 
-    def get(self, request):
+    def get(self, request, pk):
         form = self.form_class()
 
         return render(request, self.template_name, {"form": form})
