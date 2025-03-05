@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Liste des Restaurants</h1>
+    <a href="{% url 'restaurant-new' %}">Ajouter un Restaurant</a>
+
+    <ul>
+        {% for restaurant in restaurants %}
+            <li>
+                {{ restaurant.name }} - {{ restaurant.city }}
+                <a href="{% url 'restaurant-update' restaurant.pk %}">Modifier</a>
+                <a href="{% url 'restaurant-delete' restaurant.pk %}">Supprimer</a>
+            </li>
+        {% empty %}
+            <li>Aucun restaurant enregistré.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

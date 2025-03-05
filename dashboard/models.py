@@ -17,6 +17,9 @@ class Restaurant(models.Model):
     post_code = models.CharField(max_length=5)
     city = models.CharField(max_length=60)
 
+    def __str__(self):
+        return self.name
+
 
 class Job(models.Model):
     post = models.CharField(max_length=30)

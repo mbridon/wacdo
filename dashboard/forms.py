@@ -6,6 +6,3 @@ class RestaurantForm(ModelForm):
     class Meta:
         model = Restaurant
         fields = ["name", "address", "post_code", "city"]
-
-    def save(self, *args, **kwargs):
-        restaurant = super().save(*args, **kwargs)
