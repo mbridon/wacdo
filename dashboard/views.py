@@ -18,7 +18,7 @@ class RestaurantListView(LoginRequiredMixin, ListView):
         restaurants = Restaurant.objects.all()
         # WTF: the template doesn't print the actual list :-/
 
-        return HttpResponse(Restaurant, self.template_name)
+        return HttpResponse(restaurants, self.template_name)
 
 
 class CreateRestaurantView(LoginRequiredMixin, CreateView):
