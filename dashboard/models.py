@@ -10,6 +10,9 @@ class Collaborator(models.Model):
     is_admin = models.BooleanField()
     password = models.CharField(max_length=60)
 
+    def __str__(self):
+        return " ".join(self.first_name, self.last_name)
+
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=60)
