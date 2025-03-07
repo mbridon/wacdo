@@ -1,11 +1,18 @@
 from django.forms import ModelForm
-from .models import Collaborator, Restaurant
+
+from .models import Collaborator, Job, Restaurant
 
 
 class CollaboratorForm:
     class Meta:
         model = Collaborator
         fields = ["last_name", "first_name", "email", "date_first_hire", "is_admin", "password"]
+
+
+class JobForm(ModelForm):
+    class Meta:
+        model = Job
+        fields = ["post"]
 
 
 class RestaurantForm(ModelForm):

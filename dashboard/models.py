@@ -24,6 +24,9 @@ class Restaurant(models.Model):
 class Job(models.Model):
     post = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.post
+
 
 class Affectation(models.Model):
     collaborator = models.ForeignKey(Collaborator, on_delete=models.CASCADE)

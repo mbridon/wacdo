@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Collaborator, Restaurant, Job
-from .forms import CollaboratorForm, RestaurantForm
+from .models import Collaborator, Job, Restaurant
+from .forms import CollaboratorForm, JobForm, RestaurantForm
 
 
 class CollaboratorListView(LoginRequiredMixin, ListView):
@@ -30,6 +30,32 @@ class DeleteCollaboratorView(LoginRequiredMixin, DeleteView):
     model = Collaborator
     template_name = "collaborators/collaborator_confirm_delete.html"
     success_url = reverse_lazy("collaborator-list")
+
+
+class JobListView(LoginRequiredMixin, ListView):
+    model = Job
+    template_name = "jobs/job_list.html"
+    context_object_name = "jobs"
+
+
+class CreateJobView(LoginRequiredMixin, CreateView):
+    model = Job
+    form_class = JobForm
+    template_name = "jobs/job_form.html"
+    success_url = reverse_lazy("job-list")
+
+
+class UpdateJobView(LoginRequiredMixin, UpdateView):
+    model = Job
+    form_class = JobForm
+    template_name = "jobs/job_form.html"
+    success_url = reverse_lazy("job-list")
+
+
+class DeleteJobView(LoginRequiredMixin, DeleteView):
+    model = Job
+    template_name = "jobs/job_confirm_delete.html"
+    success_url = reverse_lazy("job-list")
 
 
 class RestaurantListView(LoginRequiredMixin, ListView):

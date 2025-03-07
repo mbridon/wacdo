@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import (
     CollaboratorListView, CreateCollaboratorView, UpdateCollaboratorView, DeleteCollaboratorView,
+    JobListView, CreateJobView, UpdateJobView, DeleteJobView,
     RestaurantListView, CreateRestaurantView, UpdateRestaurantView, DeleteRestaurantView,
 )
 
@@ -11,6 +12,12 @@ urlpatterns = [
     path("collaborator/new", CreateCollaboratorView.as_view(), name="collaborator-new"),
     path("collaborator/<int:pk>/", UpdateCollaboratorView.as_view(), name="collaborator-update"),
     path("collaborator/<int:pk>/delete/", DeleteCollaboratorView.as_view(), name="collaborator-delete"),
+
+    # Jobs
+    path("job/all", JobListView.as_view(), name="job-list"),
+    path("job/new", CreateJobView.as_view(), name="job-new"),
+    path("job/<int:pk>/", UpdateJobView.as_view(), name="job-update"),
+    path("job/<int:pk>/delete/", DeleteJobView.as_view(), name="job-delete"),
 
     # Restaurants
     path("restaurant/all", RestaurantListView.as_view(), name="restaurant-list"),
