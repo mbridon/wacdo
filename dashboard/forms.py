@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from .models import Collaborator, Job, Restaurant
 
 
-class CollaboratorForm:
+class CollaboratorForm(ModelForm):
     class Meta:
         model = Collaborator
         fields = ["last_name", "first_name", "email", "date_first_hire", "is_admin", "password"]
