@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Supprimer {{ collaborator.first_name - collaborator.last_name }} ?</h1>
+    <h1>Supprimer {{ fonction.post }} ?</h1>
 
     <form method="post">
         {% csrf_token %}
         <button type="submit">Confirmer</button>
     </form>
 
-    <a href="{% url 'collaborator-list' %}">Annuler</a>
+    <a href="{% url 'fonction-list' %}">Annuler</a>
 {% endblock %}

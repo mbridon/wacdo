@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Liste des fonctions</h1>
+    <a href="{% url 'fonction-new' %}">Ajouter un Fonction</a>
+
+    <ul>
+        {% for fonction in fonctions %}
+            <li>
+                {{ fonction.poste }}
+                <a href="{% url 'fonction-update' fonction.pk %}">Modifier</a>
+                <a href="{% url 'fonction-delete' fonction.pk %}">Supprimer</a>
+            </li>
+        {% empty %}
+            <li>Aucun fonction enregistré.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

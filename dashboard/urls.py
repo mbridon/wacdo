@@ -1,23 +1,23 @@
 from django.urls import path
 from .views import (
-    CollaboratorListView, CreateCollaboratorView, UpdateCollaboratorView, DeleteCollaboratorView,
-    JobListView, CreateJobView, UpdateJobView, DeleteJobView,
+    CollaborateurListView, CreateCollaborateurView, UpdateCollaborateurView, DeleteCollaborateurView,
+    FonctionListView, CreateFonctionView, UpdateFonctionView, DeleteFonctionView,
     RestaurantListView, CreateRestaurantView, UpdateRestaurantView, DeleteRestaurantView,
 )
 
 
 urlpatterns = [
-    # Collaborators
-    path("collaborator/all", CollaboratorListView.as_view(), name="collaborator-list"),
-    path("collaborator/new", CreateCollaboratorView.as_view(), name="collaborator-new"),
-    path("collaborator/<int:pk>/", UpdateCollaboratorView.as_view(), name="collaborator-update"),
-    path("collaborator/<int:pk>/delete/", DeleteCollaboratorView.as_view(), name="collaborator-delete"),
+    # Collaborateurs
+    path("collaborateur/all", CollaborateurListView.as_view(), name="collaborateur-list"),
+    path("collaborateur/new", CreateCollaborateurView.as_view(), name="collaborateur-new"),
+    path("collaborateur/<int:pk>/", UpdateCollaborateurView.as_view(), name="collaborateur-update"),
+    path("collaborateur/<int:pk>/delete/", DeleteCollaborateurView.as_view(), name="collaborateur-delete"),
 
-    # Jobs
-    path("job/all", JobListView.as_view(), name="job-list"),
-    path("job/new", CreateJobView.as_view(), name="job-new"),
-    path("job/<int:pk>/", UpdateJobView.as_view(), name="job-update"),
-    path("job/<int:pk>/delete/", DeleteJobView.as_view(), name="job-delete"),
+    # Fonctions
+    path("fonction/all", FonctionListView.as_view(), name="fonction-list"),
+    path("fonction/new", CreateFonctionView.as_view(), name="fonction-new"),
+    path("fonction/<int:pk>/", UpdateFonctionView.as_view(), name="fonction-update"),
+    path("fonction/<int:pk>/delete/", DeleteFonctionView.as_view(), name="fonction-delete"),
 
     # Restaurants
     path("restaurant/all", RestaurantListView.as_view(), name="restaurant-list"),

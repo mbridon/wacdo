@@ -1,18 +1,19 @@
-from django.forms import ModelForm
+from django.forms import DateField, ModelForm, TextInput
 
-from .models import Collaborator, Job, Restaurant
+from .models import Collaborateur, Fonction, Restaurant
 
 
-class CollaboratorForm(ModelForm):
+class CollaborateurForm(ModelForm):
     class Meta:
-        model = Collaborator
-        fields = ["last_name", "first_name", "email", "date_first_hire", "is_admin", "password"]
+        model = Collaborateur
+        fields = ["nom", "prenom", "email", "date_premiere_embauche", "is_admin", "password"]
 
+    date_premiere_embauche = DateField(widget=TextInput(attrs={'class': 'form-control', 'type':'date'}))
 
-class JobForm(ModelForm):
+class FonctionForm(ModelForm):
     class Meta:
-        model = Job
-        fields = ["post"]
+        model = Fonction
+        fields = ["poste"]
 
 
 class RestaurantForm(ModelForm):

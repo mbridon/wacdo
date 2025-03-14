@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{% if object %}Modifier{% else %}Ajouter{% endif %} un Collaborator</h1>
+    <h1>{% if object %}Modifier{% else %}Ajouter{% endif %} un Fonction</h1>
 
     <form method="post">
         {% csrf_token %}
@@ -9,5 +9,5 @@
         <button type="submit">Enregistrer</button>
     </form>
 
-    <a href="{% url 'collaborator-list' %}">Annuler</a>
+    <a href="{% url 'fonction-list' %}">Annuler</a>
 {% endblock %}

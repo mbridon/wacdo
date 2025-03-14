@@ -2,60 +2,60 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Collaborator, Job, Restaurant
-from .forms import CollaboratorForm, JobForm, RestaurantForm
+from .models import Collaborateur, Fonction, Restaurant
+from .forms import CollaborateurForm, FonctionForm, RestaurantForm
 
 
-class CollaboratorListView(LoginRequiredMixin, ListView):
-    model = Collaborator
-    template_name = "collaborators/collaborator_list.html"
-    context_object_name = "collaborators"
+class CollaborateurListView(LoginRequiredMixin, ListView):
+    model = Collaborateur
+    template_name = "collaborateurs/collaborateur_list.html"
+    context_object_name = "collaborateurs"
 
 
-class CreateCollaboratorView(LoginRequiredMixin, CreateView):
-    model = Collaborator
-    form_class = CollaboratorForm
-    template_name = "collaborators/collaborator_form.html"
-    success_url = reverse_lazy("collaborator-list")
+class CreateCollaborateurView(LoginRequiredMixin, CreateView):
+    model = Collaborateur
+    form_class = CollaborateurForm
+    template_name = "collaborateurs/collaborateur_form.html"
+    success_url = reverse_lazy("collaborateur-list")
 
 
-class UpdateCollaboratorView(LoginRequiredMixin, UpdateView):
-    model = Collaborator
-    form_class = CollaboratorForm
-    template_name = "collaborators/collaborator_form.html"
-    success_url = reverse_lazy("collaborator-list")
+class UpdateCollaborateurView(LoginRequiredMixin, UpdateView):
+    model = Collaborateur
+    form_class = CollaborateurForm
+    template_name = "collaborateurs/collaborateur_form.html"
+    success_url = reverse_lazy("collaborateur-list")
 
 
-class DeleteCollaboratorView(LoginRequiredMixin, DeleteView):
-    model = Collaborator
-    template_name = "collaborators/collaborator_confirm_delete.html"
-    success_url = reverse_lazy("collaborator-list")
+class DeleteCollaborateurView(LoginRequiredMixin, DeleteView):
+    model = Collaborateur
+    template_name = "collaborateurs/collaborateur_confirm_delete.html"
+    success_url = reverse_lazy("collaborateur-list")
 
 
-class JobListView(LoginRequiredMixin, ListView):
-    model = Job
-    template_name = "jobs/job_list.html"
-    context_object_name = "jobs"
+class FonctionListView(LoginRequiredMixin, ListView):
+    model = Fonction
+    template_name = "fonctions/fonction_list.html"
+    context_object_name = "fonctions"
 
 
-class CreateJobView(LoginRequiredMixin, CreateView):
-    model = Job
-    form_class = JobForm
-    template_name = "jobs/job_form.html"
-    success_url = reverse_lazy("job-list")
+class CreateFonctionView(LoginRequiredMixin, CreateView):
+    model = Fonction
+    form_class = FonctionForm
+    template_name = "fonctions/fonction_form.html"
+    success_url = reverse_lazy("fonction-list")
 
 
-class UpdateJobView(LoginRequiredMixin, UpdateView):
-    model = Job
-    form_class = JobForm
-    template_name = "jobs/job_form.html"
-    success_url = reverse_lazy("job-list")
+class UpdateFonctionView(LoginRequiredMixin, UpdateView):
+    model = Fonction
+    form_class = FonctionForm
+    template_name = "fonctions/fonction_form.html"
+    success_url = reverse_lazy("fonction-list")
 
 
-class DeleteJobView(LoginRequiredMixin, DeleteView):
-    model = Job
-    template_name = "jobs/job_confirm_delete.html"
-    success_url = reverse_lazy("job-list")
+class DeleteFonctionView(LoginRequiredMixin, DeleteView):
+    model = Fonction
+    template_name = "fonctions/fonction_confirm_delete.html"
+    success_url = reverse_lazy("fonction-list")
 
 
 class RestaurantListView(LoginRequiredMixin, ListView):

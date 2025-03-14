@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Collaborateurs</h1>
+    <a href="{% url 'collaborateur-new' %}">Add Collaborateur</a>
+
+    <ul>
+        {% for collaborateur in collaborateurs %}
+            <li>
+                {{ collaborateur.prenom }} - {{ collaborateur.nom }}
+                <a href="{% url 'collaborateur-update' collaborateur.pk %}">Modifier</a>
+                <a href="{% url 'collaborateur-delete' collaborateur.pk %}">Supprimer</a>
+            </li>
+        {% empty %}
+            <li>Aucun collaborateur enregistré.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
