@@ -37,3 +37,6 @@ class Affectation(models.Model):
     fonction = models.ForeignKey(Fonction, on_delete=models.CASCADE)
     debut = models.DateTimeField(auto_now=False, auto_now_add=False)
     end = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True)
+
+    def __str__(self):
+        return ",".join(self.collaborateur, self.restaurant, self.fonction, self.debut, self.end)

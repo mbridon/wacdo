@@ -1,6 +1,12 @@
 from django.forms import DateField, ModelForm, TextInput
 
-from .models import Collaborateur, Fonction, Restaurant
+from .models import Affectation, Collaborateur, Fonction, Restaurant
+
+
+class AffectationForm(ModelForm):
+    class Meta:
+        model = Affectation
+        fields = ["collaborateur", "restaurant", "fonction", "debut", "end"]
 
 
 class CollaborateurForm(ModelForm):
@@ -9,6 +15,7 @@ class CollaborateurForm(ModelForm):
         fields = ["nom", "prenom", "email", "date_premiere_embauche", "is_admin", "password"]
 
     date_premiere_embauche = DateField(widget=TextInput(attrs={'class': 'form-control', 'type':'date'}))
+
 
 class FonctionForm(ModelForm):
     class Meta:

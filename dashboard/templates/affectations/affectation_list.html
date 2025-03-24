@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <a href="{% url 'affectation-new' %}" class="btn btn-primary">Ajouter une affectation</a>
+</div>
+    <h1>Affectations</h1>
+    <a href="{% url 'affectation-new' %}">Ajouter une affectation</a>
+
+    <ul>
+        {% for affectation in affectations %}
+            <li>
+                {{ affectation }}
+                <a href="{% url 'affectation-update' affectation.pk %}">Modifier</a>
+                <a href="{% url 'affectation-delete' affectation.pk %}">Supprimer</a>
+            </li>
+        {% empty %}
+            <li>Aucune affectation enregistrée.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

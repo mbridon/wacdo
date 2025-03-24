@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import (
+    AffectationListView, CreateAffectationView, UpdateAffectationView, DeleteAffectationView,
     CollaborateurListView, CreateCollaborateurView, UpdateCollaborateurView, DeleteCollaborateurView,
     FonctionListView, CreateFonctionView, UpdateFonctionView, DeleteFonctionView,
     RestaurantListView, CreateRestaurantView, UpdateRestaurantView, DeleteRestaurantView,
@@ -7,6 +8,12 @@ from .views import (
 
 
 urlpatterns = [
+    # Affectations
+    path("affectation/all", AffectationListView.as_view(), name="affectation-all"),
+    path("affectation/new", CreateAffectationView.as_view(), name="affectation-new"),
+    path("affectation/<int:pk>/", UpdateAffectationView.as_view(), name="affectation-update"),
+    path("affectation/<int:pk>/delete/", DeleteAffectationView.as_view(), name="affectation-delete"),
+
     # Collaborateurs
     path("collaborateur/all", CollaborateurListView.as_view(), name="collaborateur-list"),
     path("collaborateur/new", CreateCollaborateurView.as_view(), name="collaborateur-new"),

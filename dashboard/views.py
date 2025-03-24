@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Collaborateur, Fonction, Restaurant
-from .forms import CollaborateurForm, FonctionForm, RestaurantForm
+from .models import Affectation, Collaborateur, Fonction, Restaurant
+from .forms import AffectationForm, CollaborateurForm, FonctionForm, RestaurantForm
 
 
 class CollaborateurListView(LoginRequiredMixin, ListView):
@@ -82,3 +82,30 @@ class DeleteRestaurantView(LoginRequiredMixin, DeleteView):
     model = Restaurant
     template_name = "restaurants/restaurant_confirm_delete.html"
     success_url = reverse_lazy("restaurant-list")
+
+
+class AffectationListView(LoginRequiredMixin, ListView):
+    model = Affectation
+    template_name = "affectations/affectation_list.html"
+    context_object_name = "affectations"
+
+
+class CreateAffectationView(LoginRequiredMixin, CreateView):
+    model = Affectation
+    form_class = AffectationForm
+    template_name = "affectations/affectation_affectation_form.html"
+    success_url = reverse_lazy("affectation-list")
+
+
+class UpdateAffectationView(LoginRequiredMixin, CreateView):
+    model = Affectation
+    form_class = AffectationForm
+    template_name = "affectations/affectation_affectation_form.html"
+    success_url = reverse_lazy("affectation-list")
+
+
+class DeleteAffectationView(LoginRequiredMixin, CreateView):
+    model = Affectation
+    form_class = AffectationForm
+    template_name = "affectations/affectation_affectation_form.html"
+    success_url = reverse_lazy("affectation-list")
