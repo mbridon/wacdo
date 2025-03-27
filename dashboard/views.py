@@ -93,19 +93,19 @@ class AffectationListView(LoginRequiredMixin, ListView):
 class CreateAffectationView(LoginRequiredMixin, CreateView):
     model = Affectation
     form_class = AffectationForm
-    template_name = "affectations/affectation_affectation_form.html"
+    template_name = "affectations/affectation_form.html"
     success_url = reverse_lazy("affectation-list")
 
 
 class UpdateAffectationView(LoginRequiredMixin, CreateView):
     model = Affectation
     form_class = AffectationForm
-    template_name = "affectations/affectation_affectation_form.html"
+    template_name = "affectations/affectation_form.html"
     success_url = reverse_lazy("affectation-list")
 
 
 class DeleteAffectationView(LoginRequiredMixin, CreateView):
     model = Affectation
     form_class = AffectationForm
-    template_name = "affectations/affectation_affectation_form.html"
+    template_name = "affectations/affectation_form.html"
     success_url = reverse_lazy("affectation-list")
