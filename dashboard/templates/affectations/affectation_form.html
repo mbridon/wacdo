@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{% if object %}Modifier{% else %}Ajouter{% endif %} une affectation</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enregistrer</button>
+    </form>
+
+    <a href="{% url 'affectation-all' %}">Annuler</a>
+{% endblock %}
