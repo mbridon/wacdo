@@ -1,4 +1,4 @@
-from django.forms import DateField, ModelForm, TextInput
+from django.forms import DateInput, ModelForm, TextInput
 
 from .models import Affectation, Collaborateur, Fonction, Restaurant
 
@@ -7,18 +7,18 @@ class AffectationForm(ModelForm):
     class Meta:
         model = Affectation
         fields = ["collaborateur", "restaurant", "fonction", "debut", "end"]
-
-    debut = DateField(widget=TextInput(attrs={'class': 'form-control', 'type': 'date'}))
-    end = DateField(widget=TextInput(attrs={'class': 'form-control', 'type':'date'}), required=False)
+        widgets = {
+            'debut': DateInput(attrs={'type': 'date'}),
+            "end": DateInput(attrs={"type": "date", "required": False})
+        }
 
 
 class CollaborateurForm(ModelForm):
     class Meta:
         model = Collaborateur
         fields = ["nom", "prenom", "email", "date_premiere_embauche", "is_admin", "password"]
-
-    date_premiere_embauche = DateField(widget=TextInput(attrs={'class': 'form-control', 'type':'date'}))
-    end = DateField(widget=TextInput(attrs={'class': 'form-control', 'type':'date'}), required=False)
+        widgets = {"date_premiere_embauche": DateInput(attrs={"type": "date"}),
+                   "end": DateInput(attrs={"type": "date"})}
 
 
 class FonctionForm(ModelForm):
