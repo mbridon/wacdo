@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
@@ -102,6 +103,11 @@ class UpdateAffectationView(LoginRequiredMixin, CreateView):
     form_class = AffectationForm
     template_name = "affectations/affectation_form.html"
     success_url = reverse_lazy("affectation-list")
+    context_object_name = Affectation
+
+    def get(self, request, pk):
+        self.form = self.form_class(get_object_or_404(self.context_object_name.objects, pk=pk))
+        return HttpResponse(self.form)
 
 
 class DeleteAffectationView(LoginRequiredMixin, CreateView):
