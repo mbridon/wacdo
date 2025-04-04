@@ -11,7 +11,7 @@ class Collaborateur(models.Model):
     password = models.CharField(max_length=60)
 
     def __str__(self):
-        return " ".join(self.prenom, self.nom)
+        return f"{self.prenom} {self.nom}"
 
 
 class Restaurant(models.Model):
@@ -39,4 +39,4 @@ class Affectation(models.Model):
     end = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
 
     def __str__(self):
-        return ",".join(self.collaborateur, self.restaurant, self.fonction, self.debut, self.end)
+        return f"{self.collaborateur} - {self.restaurant} - {self.fonction} ({self.debut} à {self.end or 'en cours'})"
