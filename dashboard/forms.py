@@ -8,8 +8,9 @@ class AffectationForm(ModelForm):
         model = Affectation
         fields = ["collaborateur", "restaurant", "fonction", "debut", "end"]
 
-        debut = DateField(widget=TextInput(attrs={'class': 'form-control', 'type': 'date'}))
-        end = DateField(widget=TextInput(attrs={'class': 'form-control', 'type':'date'}))
+    debut = DateField(widget=TextInput(attrs={'class': 'form-control', 'type': 'date'}))
+    end = DateField(widget=TextInput(attrs={'class': 'form-control', 'type':'date'}), required=False)
+
 
 class CollaborateurForm(ModelForm):
     class Meta:
@@ -17,6 +18,7 @@ class CollaborateurForm(ModelForm):
         fields = ["nom", "prenom", "email", "date_premiere_embauche", "is_admin", "password"]
 
     date_premiere_embauche = DateField(widget=TextInput(attrs={'class': 'form-control', 'type':'date'}))
+    end = DateField(widget=TextInput(attrs={'class': 'form-control', 'type':'date'}), required=False)
 
 
 class FonctionForm(ModelForm):
