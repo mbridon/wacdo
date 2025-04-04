@@ -103,7 +103,7 @@ class UpdateAffectationView(LoginRequiredMixin, UpdateView):
     form_class = AffectationForm
     template_name = "affectations/affectation_form.html"
     success_url = reverse_lazy("affectation-list")
-    context_object_name = Affectation
+    context_object_name = "affectation"
 
 
 class DeleteAffectationView(LoginRequiredMixin, DeleteView):
