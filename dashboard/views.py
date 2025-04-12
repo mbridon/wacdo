@@ -64,6 +64,9 @@ class RestaurantListView(LoginRequiredMixin, ListView):
     template_name = "restaurants/restaurant_list.html"
     context_object_name = "restaurants"
 
+    def post(request, search):
+        print(search)
+
 
 class CreateRestaurantView(LoginRequiredMixin, CreateView):
     model = Restaurant

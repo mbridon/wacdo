@@ -2,8 +2,13 @@
 
 {% block content %}
     <h1>Liste des Restaurants</h1>
-    <a href="{% url 'restaurant-new' %}">Ajouter un Restaurant</a>
-
+    <div class="row">
+        <div class="col col-8" /><input type="text" id="search" name="search" /></div>
+        <div class="col col-2" /><input type="submit" value="search" action="/dashboard/restaurant/all" method="post" /></div>
+    </div>
+    <div class="row">
+        <a href="{% url 'restaurant-new' %}">Ajouter un Restaurant</a>
+    </div>
     <ul>
         {% for restaurant in restaurants %}
             <li>
