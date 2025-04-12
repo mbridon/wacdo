@@ -15,7 +15,7 @@
     <ul>
         {% for restaurant in restaurants %}
             <li>
-                {{ restaurant.name }} - {{ restaurant.city }}
+                <a href="{% url 'restaurant-details' restaurant.pk %}">{{ restaurant.name }} - {{ restaurant.city }}</a>
                 <a href="{% url 'restaurant-update' restaurant.pk %}">Modifier</a>
                 <a href="{% url 'restaurant-delete' restaurant.pk %}">Supprimer</a>
             </li>

@@ -1,7 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Affectation, Collaborateur, Fonction, Restaurant
 from .forms import AffectationForm, CollaborateurForm, FonctionForm, RestaurantForm
@@ -67,6 +67,13 @@ class RestaurantListView(LoginRequiredMixin, ListView):
     def post(self, request):
         search_term = request.POST["q"]
         results = Restaurant.objects.all().filter(name__icontains=search_term)
+        if results.count() == 1:
+            restaurant_pk = results.first().pk
+            return redirect(f"/dashboard/restaurant/{restaurant_pk}")
+
+        elif not results.exists():
+            raise Http404(f"No such restaurant: {search_term}")
+
         return HttpResponse(results)
 
 
@@ -88,6 +95,11 @@ class DeleteRestaurantView(LoginRequiredMixin, DeleteView):
     model = Restaurant
     template_name = "restaurants/restaurant_confirm_delete.html"
     success_url = reverse_lazy("restaurant-list")
+
+
+class RestaurantDetailsView(LoginRequiredMixin, DetailView):
+    model = Restaurant
+    template_name = "restaurants/restaurant_details.html"
 
 
 class AffectationListView(LoginRequiredMixin, ListView):
