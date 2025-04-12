@@ -64,8 +64,10 @@ class RestaurantListView(LoginRequiredMixin, ListView):
     template_name = "restaurants/restaurant_list.html"
     context_object_name = "restaurants"
 
-    def post(request, search):
-        print(search)
+    def post(self, request):
+        search_term = request.POST["q"]
+        results = Restaurant.objects.all().filter(name__icontains=search_term)
+        return HttpResponse(results)
 
 
 class CreateRestaurantView(LoginRequiredMixin, CreateView):
