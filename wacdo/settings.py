@@ -52,6 +52,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "wacdo.urls"
 
+LOGIN_URL = "/users/login"
 LOGIN_REDIRECT_URL = 'home'  # Redirige vers la vue 'home' après connexion
 LOGOUT_REDIRECT_URL = 'login'  # Redirige vers la vue 'login' après déconnexion
 
