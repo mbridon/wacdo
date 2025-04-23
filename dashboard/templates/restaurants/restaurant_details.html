@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ restaurant.name }}</h1>
+    <p>{{ restaurant.address }}</p>
+    <p>{{ restaurant.post_code }}</p>
+    <p>{{ restaurant.city }}</p>
+    {% for affectation in restaurant.affectations %}
+    {{ affectation.collaborateur }} {{ affectation.debut }} {{ affectation.end }}
+    {% endfor %}
+{% endblock %}

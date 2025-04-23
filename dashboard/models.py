@@ -32,9 +32,9 @@ class Fonction(models.Model):
 
 
 class Affectation(models.Model):
-    collaborateur = models.ForeignKey(Collaborateur, on_delete=models.CASCADE)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    fonction = models.ForeignKey(Fonction, on_delete=models.CASCADE)
+    collaborateur = models.ForeignKey(Collaborateur, on_delete=models.CASCADE, related_name="affectation_set")
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="affectation_set")
+    fonction = models.ForeignKey(Fonction, on_delete=models.CASCADE, related_name="affectation_set")
     debut = models.DateTimeField(auto_now=False, auto_now_add=False)
     end = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
 

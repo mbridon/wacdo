@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Affectation, Collaborateur, Fonction, Restaurant
-from .forms import AffectationForm, CollaborateurForm, FonctionForm, RestaurantForm
+from .forms import AffectationForm, CollaborateurForm, FonctionForm, RestaurantForm, RestaurantDetailsForm
 
 
 class CollaborateurListView(LoginRequiredMixin, ListView):
@@ -59,7 +59,7 @@ class DeleteFonctionView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("fonction-list")
 
 
-class RestaurantListView(LoginRequiredMixin, ListView):
+class RestaurantListView(LoginRequiredMixin, UpdateView):
     model = Restaurant
     template_name = "restaurants/restaurant_list.html"
     context_object_name = "restaurants"
@@ -100,6 +100,7 @@ class DeleteRestaurantView(LoginRequiredMixin, DeleteView):
 class RestaurantDetailsView(LoginRequiredMixin, DetailView):
     model = Restaurant
     template_name = "restaurants/restaurant_details.html"
+    form_class = RestaurantDetailsForm
 
 
 class AffectationListView(LoginRequiredMixin, ListView):
