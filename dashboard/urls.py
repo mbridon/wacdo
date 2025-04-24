@@ -28,8 +28,8 @@ urlpatterns = [
 
     # Restaurants
     path("restaurant/all", RestaurantListView.as_view(), name="restaurant-list"),
-    path("restaurant/<int:pk>", RestaurantDetailsView.as_view(), name="restaurant-details"),
+    path("restaurant/<int:pk>/details", RestaurantDetailsView.as_view(), name="restaurant-details"),
     path("restaurant/new", CreateRestaurantView.as_view(), name="restaurant-new"),
-    path("restaurant/<int:pk>/", UpdateRestaurantView.as_view(), name="restaurant-update"),
+    path("restaurant/<int:pk>/edit/", UpdateRestaurantView.as_view(), name="restaurant-update"),
     path("restaurant/<int:pk>/delete/", DeleteRestaurantView.as_view(), name="restaurant-delete"),
 ]
