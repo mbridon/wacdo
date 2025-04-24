@@ -36,4 +36,4 @@ class RestaurantForm(ModelForm):
 class RestaurantDetailsForm(ModelForm):
     class Meta:
         model = Restaurant
-        fields = ["affectation_set"]
+        fields = ["name", "address", "post_code", "city"]
