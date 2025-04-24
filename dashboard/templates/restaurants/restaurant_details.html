@@ -1,11 +1,43 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{{ restaurant.name }}</h1>
-    <p>{{ restaurant.address }}</p>
-    <p>{{ restaurant.post_code }}</p>
-    <p>{{ restaurant.city }}</p>
-    {% for affectation in restaurant.affectations %}
-    {{ affectation.collaborateur }} {{ affectation.debut }} {{ affectation.end }}
-    {% endfor %}
+  <h1 class="mt-4">{{ restaurant.name }}</h1>
+  <p><strong>Adresse :</strong> {{ restaurant.address }}</p>
+  <p><strong>Code postal :</strong> {{ restaurant.post_code }}</p>
+  <p><strong>Ville :</strong> {{ restaurant.city }}</p>
+
+  <h2 class="mt-5">Affectations</h2>
+
+  {% if affectations %}
+    <div class="table-responsive mt-3">
+      <table class="table table-bordered table-hover table-striped align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Collaborateur</th>
+            <th>Fonction</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for affectation in affectations %}
+            <tr>
+              <td>{{ affectation.collaborateur }}</td>
+              <td>{{ affectation.fonction }}</td>
+              <td>{{ affectation.debut|date:"d/m/Y H:i" }}</td>
+              <td>
+                {% if affectation.end %}
+                  {{ affectation.end|date:"d/m/Y H:i" }}
+                {% else %}
+                  <span class="text-muted">En cours</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="text-muted">Aucune affectation pour ce restaurant.</p>
+  {% endif %}
 {% endblock %}
