@@ -1,26 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Liste des Restaurants</h1>
-    <div class="row">
-        <form method="post">
-            {% csrf_token %}
-            <div class="col col-7" /><input type="text" id="search" name="q"></div>
-            <div class="col col-2" /><input type="submit" value="Search..." action="/dashboard/restaurant/all" /></div>
-        </form>
-    </div>
-    <div class="row">
-        <a href="{% url 'restaurant-new' %}">Ajouter un Restaurant</a>
-    </div>
-    <ul>
-        {% for restaurant in restaurants %}
-            <li>
-                <a href="{% url 'restaurant-details' restaurant.pk %}">{{ restaurant.name }} - {{ restaurant.city }}</a>
-                <a href="{% url 'restaurant-update' restaurant.pk %}">Modifier</a>
-                <a href="{% url 'restaurant-delete' restaurant.pk %}">Supprimer</a>
-            </li>
-        {% empty %}
-            <li>Aucun restaurant enregistré.</li>
+  <h1>Restaurants</h1>
+
+  <form method="post" class="mb-4">
+    {% csrf_token %}
+    <input type="text" name="q" class="form-control" placeholder="Rechercher par nom..." required>
+    <button type="submit" class="btn btn-primary mt-2">Rechercher</button>
+  </form>
+
+  {% if restaurants %}
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Adresse</th>
+          <th>Ville</th>
+          <th>Détail</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in restaurants %}
+          <tr>
+            <td>{{ r.name }}</td>
+            <td>{{ r.address }}</td>
+            <td>{{ r.city }}</td>
+            <td><a href="{% url 'restaurant-details' r.pk %}" class="btn btn-sm btn-outline-primary">Voir</a></td>
+          </tr>
         {% endfor %}
-    </ul>
+      </tbody>
+    </table>
+  {% else %}
+    <p class="text-muted">Aucun restaurant à afficher.</p>
+  {% endif %}
 {% endblock %}
