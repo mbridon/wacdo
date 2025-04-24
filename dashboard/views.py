@@ -100,7 +100,12 @@ class DeleteRestaurantView(LoginRequiredMixin, DeleteView):
 class RestaurantDetailsView(LoginRequiredMixin, DetailView):
     model = Restaurant
     template_name = "restaurants/restaurant_details.html"
-    form_class = RestaurantDetailsForm
+    context_object_name = "restaurant"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["affectations"] = self.object.affectation_set.select_related("collaborateur", "fonction")
+        return context
 
 
 class AffectationListView(LoginRequiredMixin, ListView):
