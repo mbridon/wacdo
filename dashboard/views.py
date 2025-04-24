@@ -65,16 +65,16 @@ class RestaurantListView(LoginRequiredMixin, ListView):
     context_object_name = "restaurants"
 
     def post(self, request):
-        search_term = request.POST["q"]
-        results = Restaurant.objects.all().filter(name__icontains=search_term)
+        search_term = request.POST.get("q", "").strip()
+        results = Restaurant.objects.filter(name__icontains=search_term)
+
         if results.count() == 1:
-            restaurant_pk = results.first().pk
-            return redirect(f"/dashboard/restaurant/{restaurant_pk}")
+            return redirect("restaurant-details", pk=results.first().pk)
 
         elif not results.exists():
-            raise Http404(f"No such restaurant: {search_term}")
+            raise Http404(f"Aucun restaurant trouvé pour : {search_term}")
 
-        return HttpResponse(results)
+        return render(request, self.template_name, {"restaurants": results})
 
 
 class CreateRestaurantView(LoginRequiredMixin, CreateView):
