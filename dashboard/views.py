@@ -59,7 +59,7 @@ class DeleteFonctionView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("fonction-list")
 
 
-class RestaurantListView(LoginRequiredMixin, UpdateView):
+class RestaurantListView(LoginRequiredMixin, ListView):
     model = Restaurant
     template_name = "restaurants/restaurant_list.html"
     context_object_name = "restaurants"
