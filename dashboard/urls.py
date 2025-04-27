@@ -1,8 +1,8 @@
 from django.urls import path
 from .views import (
     AffectationListView, CreateAffectationView, UpdateAffectationView, DeleteAffectationView,
-    CollaborateurListView, CreateCollaborateurView, UpdateCollaborateurView, DeleteCollaborateurView,
-    FonctionListView, CreateFonctionView, UpdateFonctionView, DeleteFonctionView,
+    CollaborateurListView, CreateCollaborateurView, UpdateCollaborateurView, DeleteCollaborateurView, CollaborateurDetailsView, IdleCollaborateursView,
+    FonctionListView, CreateFonctionView, UpdateFonctionView, DeleteFonctionView, FonctionDetailsView,
     RestaurantListView, CreateRestaurantView, UpdateRestaurantView, DeleteRestaurantView, RestaurantDetailsView,
 )
 
@@ -25,13 +25,14 @@ urlpatterns = [
     # Fonctions
     path("fonction/all", FonctionListView.as_view(), name="fonction-list"),
     path("fonction/new", CreateFonctionView.as_view(), name="fonction-new"),
-    path("fonction/<int:pk>/", UpdateFonctionView.as_view(), name="fonction-update"),
+    path("fonction/<int:pk>/details/", FonctionDetailsView.as_view(), name="fonction-details"),
+    path("fonction/<int:pk>/edit/", UpdateFonctionView.as_view(), name="fonction-update"),
     path("fonction/<int:pk>/delete/", DeleteFonctionView.as_view(), name="fonction-delete"),
 
     # Restaurants
     path("restaurant/all", RestaurantListView.as_view(), name="restaurant-list"),
-    path("restaurant/<int:pk>/details", RestaurantDetailsView.as_view(), name="restaurant-details"),
     path("restaurant/new", CreateRestaurantView.as_view(), name="restaurant-new"),
+    path("restaurant/<int:pk>/details/", RestaurantDetailsView.as_view(), name="restaurant-details"),
     path("restaurant/<int:pk>/edit/", UpdateRestaurantView.as_view(), name="restaurant-update"),
     path("restaurant/<int:pk>/delete/", DeleteRestaurantView.as_view(), name="restaurant-delete"),
 ]
