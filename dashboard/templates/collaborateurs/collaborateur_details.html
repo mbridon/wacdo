@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 class="mt-4">{{ collaborateur.prenom }} {{ collaborateur.nom }}</h1>
+  <p><strong>Email:</strong> {{ collaborateur.email }}</p>
+  <p><strong>Date premiere embauche:</strong> {{ collaborateur.date_premiere_embauche }}</p>
+  <p><strong>Admin:</strong> {{ collaborateur.is_admin }}</p>
+
+  {% for affectation in affectations %}
+    <div class="col">
+    {{ affectation.restaurant }}, {{ affectation.fonction.poste }} du {{ affectation.debut }} au
+    {% if affectation.end %}
+      {{ affectation.end|date:"d/m/Y H:i" }}
+    {% else %}
+      <span class="text-muted">... en cours</span><a href=" {% url 'affectation-update' affectation.pk %}" class="btn btn-secondary">Modifier</a>
+    {% endif %}
+    </div>
+  {% endfor %}
+
+{% endblock %}

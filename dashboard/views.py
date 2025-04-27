@@ -12,6 +12,21 @@ class CollaborateurListView(LoginRequiredMixin, ListView):
     template_name = "collaborateurs/collaborateur_list.html"
     context_object_name = "collaborateurs"
 
+    def post(self, request):
+        search_term = request.POST.get("q", "").strip()
+
+        results = Collaborateur.objects.filter(nom__icontains=search_term) | \
+                  Collaborateur.objects.filter(prenom__icontains=search_term) | \
+                  Collaborateur.objects.filter(email__icontains=search_term)
+
+        if results.count() == 1:
+            return redirect("collaborateur-details", pk=results.first().pk)
+
+        elif not results.exists():
+            raise Http404(f"Aucun collaborateur trouvé pour : {search_term}")
+
+        return render(request, self.template_name, {"collaborateurs": results})
+
 
 class CreateCollaborateurView(LoginRequiredMixin, CreateView):
     model = Collaborateur
@@ -31,6 +46,23 @@ class DeleteCollaborateurView(LoginRequiredMixin, DeleteView):
     model = Collaborateur
     template_name = "collaborateurs/collaborateur_confirm_delete.html"
     success_url = reverse_lazy("collaborateur-list")
+
+
+class CollaborateurDetailsView(LoginRequiredMixin, DetailView):
+    model = Collaborateur
+    template_name = "collaborateurs/collaborateur_details.html"
+    context_object_name = "collaborateur"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["affectations"] = self.object.affectation_set.select_related("fonction", "restaurant")
+        return context
+
+
+class IdleCollaborateursView(LoginRequiredMixin, ListView):
+    model = Collaborateur
+    template_name = "collaborateurs/collaborateur_idle.html"
+    context_object_name = "collaborateurs"
 
 
 class FonctionListView(LoginRequiredMixin, ListView):

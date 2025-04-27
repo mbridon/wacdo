@@ -17,8 +17,10 @@ urlpatterns = [
     # Collaborateurs
     path("collaborateur/all", CollaborateurListView.as_view(), name="collaborateur-list"),
     path("collaborateur/new", CreateCollaborateurView.as_view(), name="collaborateur-new"),
-    path("collaborateur/<int:pk>/", UpdateCollaborateurView.as_view(), name="collaborateur-update"),
+    path("collaborateur/<int:pk>/details/", CollaborateurDetailsView.as_view(), name="collaborateur-details"),
+    path("collaborateur/<int:pk>/edit/", UpdateCollaborateurView.as_view(), name="collaborateur-update"),
     path("collaborateur/<int:pk>/delete/", DeleteCollaborateurView.as_view(), name="collaborateur-delete"),
+    path("collaborateur/idle/", IdleCollaborateursView.as_view(), name="collaborateur-idle"),
 
     # Fonctions
     path("fonction/all", FonctionListView.as_view(), name="fonction-list"),
