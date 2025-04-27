@@ -91,6 +91,17 @@ class DeleteFonctionView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("fonction-list")
 
 
+class FonctionDetailsView(LoginRequiredMixin, DetailView):
+    model = Fonction
+    template_name = "fonction/fonction_details.html"
+    context_object_name = "fonction"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["affectations"] = self.object.affectation_set.select_related("collaborateur", "restaurant")
+        return context
+
+
 class RestaurantListView(LoginRequiredMixin, ListView):
     model = Restaurant
     template_name = "restaurants/restaurant_list.html"
