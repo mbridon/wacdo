@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Supprimer {{ collaborateur.prenom - collaborateur.nom }} ?</h1>
+    <h1>Supprimer {{ collaborateur.prenom }} {{ collaborateur.nom }} ?</h1>
 
     <form method="post">
         {% csrf_token %}
