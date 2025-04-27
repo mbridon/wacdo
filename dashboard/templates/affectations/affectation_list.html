@@ -1,25 +1,43 @@
 {% extends "base.html" %}
 
-
-
 {% block content %}
-<div class="row">
-    <a href="{% url 'affectation-new' %}" class="btn btn-primary">Ajouter une affectation</a>
-    <div class="col col-4">
-        <h1>Affectations</h1>
-    </div>
-    <div class="col col-6">
-        <ul>
-            {% for affectation in affectations %}
-                <li>
-		    {{ affectation }}
-                    <a href="{% url 'affectation-update' affectation.pk %}">Modifier</a>
-                    <a href="{% url 'affectation-delete' affectation.pk %}">Supprimer</a>
-                </li>
-            {% empty %}
-                <li>Aucune affectation enregistrée.</li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
+  <h1>Affectations</h1>
+
+  <form method="post" class="mb-4">
+    {% csrf_token %}
+    <input type="text" name="q" class="form-control" placeholder="Rechercher..." required>
+    <button type="submit" class="btn btn-primary mt-2">Rechercher</button>
+  </form>
+
+  {% if affectations %}
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Collaborateur</th>
+          <th>Restaurant</th>
+          <th>Fonction</th>
+          <th>Debut</th>
+          <th>End</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for affectation in affectations %}
+          <tr>
+            <td>{{ affectation.collaborateur.prenom }} {{ affectation.collaborateur.nom }}</td>
+            <td>{{ affectation.restaurant }}</td>
+            <td>{{ affectation.fonction.poste }}</td>
+            <td>{{ affectation.debut }}</td>
+            <td>{% if affectation.end %}
+                  {{ affectation.end|date:"d/m/Y H:i" }}
+                {% else %}
+                  <span class="text-muted">... en cours</span><a href="{% url 'affectation-update' affectation.pk %}" class="btn btn-secondary">Modifier</a>
+                {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="text-muted">Aucun restaurant à afficher.</p>
+  {% endif %}
 {% endblock %}
