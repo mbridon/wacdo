@@ -109,7 +109,9 @@ class RestaurantListView(LoginRequiredMixin, ListView):
 
     def post(self, request):
         search_term = request.POST.get("q", "").strip()
-        results = Restaurant.objects.filter(name__icontains=search_term)
+        results = Restaurant.objects.filter(name__icontains=search_term) | \
+                  Restaurant.objects.filter(city__icontains=search_term) | \
+                  Restaurant.objects.filter(post_code=search_term)
 
         if results.count() == 1:
             return redirect("restaurant-details", pk=results.first().pk)
