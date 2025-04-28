@@ -32,6 +32,6 @@
       </tbody>
     </table>
   {% else %}
-    <p class="text-muted">Aucun restaurant à afficher.</p>
+    <p class="text-muted">Aucun restaurant ne correspond à votre recherche: {{ search_term }}.</p>
   {% endif %}
 {% endblock %}

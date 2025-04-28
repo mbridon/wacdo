@@ -117,7 +117,7 @@ class RestaurantListView(LoginRequiredMixin, ListView):
             return redirect("restaurant-details", pk=results.first().pk)
 
         elif not results.exists():
-            raise Http404(f"Aucun restaurant trouvé pour : {search_term}")
+            return render(request, self.template_name, {"restaurants": results, "search_term": search_term})
 
         return render(request, self.template_name, {"restaurants": results})
 
