@@ -158,6 +158,21 @@ class AffectationListView(LoginRequiredMixin, ListView):
     template_name = "affectations/affectation_list.html"
     context_object_name = "affectations"
 
+    def post(self, request):
+        search_term = request.POST.get("q", "").strip()
+        results = Affectation.objects.filter(fonction__poste__icontains=search_term) | \
+                  Affectation.objects.filter(debut__icontains=search_term) | \
+                  Affectation.objects.filter(end__icontains=search_term) | \
+                  Affectation.objects.filter(restaurant__city__icontains=search_term)
+
+        if results.count() == 1:
+            return redirect("affectation-details", pk=results.first().pk)
+
+        elif not results.exists():
+            raise Http404(f"Aucune affectation trouvée pour : {search_term}")
+
+        return render(request, self.template_name, {"affectations": results})
+
 
 class CreateAffectationView(LoginRequiredMixin, CreateView):
     model = Affectation
