@@ -7,7 +7,7 @@
   <p><strong>Ville :</strong> {{ restaurant.city }}</p>
 
   <h2 class="mt-5">Affectations</h2>
-  <a href="{% url 'affectation-update' pk=restaurant.pk %}" class="btn-primary">Modifier</a>
+  <button href="{% url 'affectation-update' pk=restaurant.pk %}" class="btn btn-secondary">Modifier</button>
 
   {% if affectations %}
     <div class="table-responsive mt-3">
