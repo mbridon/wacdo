@@ -179,3 +179,13 @@ class DeleteAffectationView(LoginRequiredMixin, DeleteView):
     form_class = AffectationForm
     template_name = "affectations/affectation_form.html"
     success_url = reverse_lazy("affectation-list")
+
+class AffectationDetailsView(LoginRequiredMixin, DetailView):
+    model = Affectation
+    template_name = "affectations/affectation_details.html"
+    context_object_name = "affectation"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+#        context["affectation"] = self.object.affectation_set.select_related("collaborateur", "fonction", "restaurant")
+        return context

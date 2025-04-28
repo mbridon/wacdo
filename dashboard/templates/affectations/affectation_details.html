@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h3 class="mt-4">Collaborateur :</h3>
+  <span>{{ affectation.collaborateur.prenom }} {{ affectation.collaborateur.nom }} : {{ affectation.fonction.poste }}</span>
+
+  <h3 class="mt-4">Restaurant :</h3>
+  <span><strong>Nom : </strong>{{ affectation.restaurant.name }}</span><br />
+  <span><strong>Adresse : </strong>{{ affectation.restaurant.address }}</span><br />
+  <span><strong>Code postal : </strong>{{ affectation.restaurant.post_code }}</span><br />
+
+  <p><strong>Ville :</strong> {{ affectation.restaurant.city }}</p>
+
+  <h3 class="mt-4">Dates :</h3>
+  <span><strong>Début : </strong>{{ affectation.debut }}</span><br />
+  <span><strong>Fin : </strong></span>
+  {% if affectation.end %}
+    {{ affectation.end|date:"d/m/Y H:i" }}
+  {% else %}
+    <span class="text-muted">En cours</span>
+  {% endif %}
+{% endblock %}
