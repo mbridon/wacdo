@@ -159,7 +159,7 @@ class RestaurantDetailsView(LoginRequiredMixin, DetailView):
             return redirect("affectation-details", pk=results.first().pk)
 
         elif not results.exists():
-            return render(request, self.template_name, {"affectations": results, "search_term": search_term})
+            return render(request, self.template_name, {"affectations": results, "pk": pk, "search_term": search_term})
 
         return render(request, self.template_name, {"affectations": results})
 

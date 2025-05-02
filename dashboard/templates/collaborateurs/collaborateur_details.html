@@ -6,6 +6,12 @@
   <p><strong>Date premiere embauche:</strong> {{ collaborateur.date_premiere_embauche }}</p>
   <p><strong>Admin:</strong> {{ collaborateur.is_admin }}</p>
 
+  <form method="post" class="mb-4">
+    {% csrf_token %}
+    <input type="text" name="q" class="form-control" placeholder="Filtrer les affectations..." required>
+    <button type="submit" class="btn btn-primary mt-2">Filtrer</button>
+  </form>
+
   {% for affectation in affectations %}
     <div class="col">
     {{ affectation.restaurant }}, {{ affectation.fonction.poste }} du {{ affectation.debut }} au

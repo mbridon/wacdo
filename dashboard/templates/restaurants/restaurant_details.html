@@ -45,6 +45,6 @@
       </table>
     </div>
   {% else %}
-    <p class="text-muted">Aucune affectation pour ce restaurant.</p>
+    <p class="text-muted">Aucune affectation pour ce restaurant{% if search_term %} avec ce filtre : {{ search_term }}{% endif %}.</p>
   {% endif %}
 {% endblock %}
