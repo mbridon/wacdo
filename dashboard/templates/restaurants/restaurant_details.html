@@ -8,7 +8,6 @@
 
   <h2 class="mt-5">Affectations</h2>
   <a class="btn btn-primary" href="{% url 'affectation-new' %}">Ajouter une affectation</a>
-  <a class="btn btn-secondary" href="{% url 'affectation-update' pk=restaurant.pk %}">Modifier</a>
   <form method="post" class="mb-4">
     {% csrf_token %}
     <input type="text" name="q" class="form-control" placeholder="Filtrer les affectations..." required>
@@ -37,6 +36,7 @@
                   {{ affectation.end|date:"d/m/Y H:i" }}
                 {% else %}
                   <span class="text-muted">En cours</span>
+                  <a class="btn btn-secondary" href="{% url 'affectation-update' pk=affectation.pk %}">Modifier</a>
                 {% endif %}
               </td>
             </tr>
