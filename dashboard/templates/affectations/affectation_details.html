@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <a href="{% url 'affectation-update' affectation.pk %}" class="btn btn-sm btn-outline-primary">Modifier</a>
   <h3 class="mt-4">Collaborateur :</h3>
   <span>{{ affectation.collaborateur.prenom }} {{ affectation.collaborateur.nom }} : {{ affectation.fonction.poste }}</span>
 
