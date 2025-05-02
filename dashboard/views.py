@@ -147,6 +147,22 @@ class RestaurantDetailsView(LoginRequiredMixin, DetailView):
     template_name = "restaurants/restaurant_details.html"
     context_object_name = "restaurant"
 
+    def post(self, request, pk):
+        restaurant = get_object_or_404(Restaurant, pk=pk)
+
+        search_term = request.POST.get("q", "").strip()
+        results = Affectation.objects.filter(restaurant=pk, fonction__poste__icontains=search_term) | \
+                  Affectation.objects.filter(restaurant=pk, debut__icontains=search_term) | \
+                  Affectation.objects.filter(restaurant=pk, end__icontains=search_term)
+
+        if results.count() == 1:
+            return redirect("affectation-details", pk=results.first().pk)
+
+        elif not results.exists():
+            return render(request, self.template_name, {"affectations": results, "search_term": search_term})
+
+        return render(request, self.template_name, {"affectations": results})
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["affectations"] = self.object.affectation_set.select_related("collaborateur", "fonction")
