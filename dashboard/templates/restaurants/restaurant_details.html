@@ -7,8 +7,8 @@
   <p><strong>Ville :</strong> {{ restaurant.city }}</p>
 
   <h2 class="mt-5">Affectations</h2>
-  <button href="{% url 'affectation-new' %}" class="btn btn-primary">Ajouter un collaborateur</button>
-  <button href="{% url 'affectation-update' pk=restaurant.pk %}" class="btn btn-secondary">Modifier</button>
+  <a class="btn btn-primary" href="{% url 'affectation-new' %}">Ajouter un collaborateur</a>
+  <a class="btn btn-secondary" href="{% url 'affectation-update' pk=restaurant.pk %}">Modifier</a>
   <form method="post" class="mb-4">
     {% csrf_token %}
     <input type="text" name="q" class="form-control" placeholder="Filtrer les affectations..." required>
