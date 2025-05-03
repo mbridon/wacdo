@@ -33,8 +33,8 @@
             <td>{{ c.is_admin }}</td>
             <td>{{ c.password }}</td>
             <td><a href="{% url 'collaborateur-details' c.pk %}" class="btn btn-sm btn-outline-primary">Voir</a></td>
-            <td><a href="{% url 'collaborateur-update' c.pk %}" class="btn btn-sm btn-outline-primary">Modifier</a></td>
-            <td><a href="{% url 'collaborateur-delete' c.pk %}" class="btn btn-sm btn-outline-primary">Supprimer</a></td>
+            <td><a href="{% url 'collaborateur-update' c.pk %}" class="btn btn-sm btn-outline-secondary">Modifier</a></td>
+            <td><a href="{% url 'collaborateur-delete' c.pk %}" class="btn btn-sm btn-outline-danger">Supprimer</a></td>
           </tr>
         {% endfor %}
       </tbody>
