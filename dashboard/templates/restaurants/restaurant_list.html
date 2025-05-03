@@ -27,8 +27,8 @@
             <td>{{ r.address }}</td>
             <td>{{ r.city }}</td>
             <td><a href="{% url 'restaurant-details' r.pk %}" class="btn btn-sm btn-outline-primary">Voir</a></td>
-            <td><a href="{% url 'restaurant-update' r.pk %}" class="btn btn-sm btn-outline-primary">Modifier</a></td>
-            <td><a href="{% url 'restaurant-delete' r.pk %}" class="btn btn-sm btn-outline-primary">Supprimer</a></td>
+            <td><a href="{% url 'restaurant-update' r.pk %}" class="btn btn-sm btn-outline-secondary">Modifier</a></td>
+            <td><a href="{% url 'restaurant-delete' r.pk %}" class="btn btn-sm btn-outline-danger">Supprimer</a></td>
           </tr>
         {% endfor %}
       </tbody>

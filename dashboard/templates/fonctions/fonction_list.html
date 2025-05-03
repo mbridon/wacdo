@@ -22,8 +22,8 @@
           <tr>
             <td>{{ f.poste }}</td>
             <td><a href="{% url 'fonction-details' f.pk %}" class="btn btn-sm btn-outline-primary">Voir</a></td>
-            <td><a href="{% url 'fonction-update' f.pk %}" class="btn btn-sm btn-outline-primary">Modifier</a></td>
-            <td><a href="{% url 'fonction-delete' f.pk %}" class="btn btn-sm btn-outline-primary">Supprimer</a></td>
+            <td><a href="{% url 'fonction-update' f.pk %}" class="btn btn-sm btn-outline-secondary">Modifier</a></td>
+            <td><a href="{% url 'fonction-delete' f.pk %}" class="btn btn-sm btn-outline-danger">Supprimer</a></td>
           </tr>
         {% endfor %}
       </tbody>
