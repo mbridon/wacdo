@@ -5,8 +5,9 @@
 
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Confirmer</button>
+        <button class="btn btn-secondary" type="submit">Confirmer</button>
+        <a class="btn btn-primary" href="{% url 'restaurant-list' %}">Annuler</a>
+
     </form>
 
-    <a href="{% url 'restaurant-list' %}">Annuler</a>
 {% endblock %}
