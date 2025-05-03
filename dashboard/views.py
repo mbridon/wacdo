@@ -93,7 +93,7 @@ class DeleteFonctionView(LoginRequiredMixin, DeleteView):
 
 class FonctionDetailsView(LoginRequiredMixin, DetailView):
     model = Fonction
-    template_name = "fonction/fonction_details.html"
+    template_name = "fonctions/fonction_details.html"
     context_object_name = "fonction"
 
     def get_context_data(self, **kwargs):
