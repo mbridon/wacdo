@@ -32,6 +32,7 @@
             <td>{{ c.date_premiere_embauche }}</td>
             <td>{{ c.is_admin }}</td>
             <td>{{ c.password }}</td>
+            <td><a href="{% url 'affectation-new' c.pk %}" class="btn btn-sm btn-primary">Affecter</a></td>
             <td><a href="{% url 'collaborateur-details' c.pk %}" class="btn btn-sm btn-outline-primary">Voir</a></td>
             <td><a href="{% url 'collaborateur-update' c.pk %}" class="btn btn-sm btn-outline-secondary">Modifier</a></td>
             <td><a href="{% url 'collaborateur-delete' c.pk %}" class="btn btn-sm btn-outline-danger">Supprimer</a></td>

@@ -196,6 +196,12 @@ class CreateAffectationView(LoginRequiredMixin, CreateView):
     template_name = "affectations/affectation_form.html"
     success_url = reverse_lazy("affectation-list")
 
+    def get(self, request, pk):
+        form = self.form_class()
+        collaborateur = get_object_or_404(Collaborateur, pk=pk)
+        print(collaborateur)
+        return render(request, self.template_name, {"form": form, "collaborateur": collaborateur})
+
 
 class UpdateAffectationView(LoginRequiredMixin, UpdateView):
     model = Affectation
