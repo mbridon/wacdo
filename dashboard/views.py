@@ -64,6 +64,13 @@ class IdleCollaborateursView(LoginRequiredMixin, ListView):
     template_name = "collaborateurs/collaborateur_idle.html"
     context_object_name = "collaborateurs"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["collaborateurs"] = [collaborateur for collaborateur in Collaborateur.objects.all()
+                                     if not collaborateur.affectation_set.count()]
+        return context
+
 
 class FonctionListView(LoginRequiredMixin, ListView):
     model = Fonction
