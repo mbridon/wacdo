@@ -190,17 +190,13 @@ class AffectationListView(LoginRequiredMixin, ListView):
         return render(request, self.template_name, {"affectations": results})
 
 
-class CreateAffectationView(LoginRequiredMixin, CreateView):
+# Assign an idle collaborator
+# This needs to be an UpdateView so the form can be prefilled with at the very least the collaborator
+class CreateAffectationView(LoginRequiredMixin, UpdateView):
     model = Affectation
     form_class = AffectationForm
     template_name = "affectations/affectation_form.html"
     success_url = reverse_lazy("affectation-list")
-
-    def get(self, request, pk):
-        form = self.form_class()
-        collaborateur = get_object_or_404(Collaborateur, pk=pk)
-        print(collaborateur)
-        return render(request, self.template_name, {"form": form, "collaborateur": collaborateur})
 
 
 class UpdateAffectationView(LoginRequiredMixin, UpdateView):
