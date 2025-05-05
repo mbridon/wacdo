@@ -211,7 +211,6 @@ class CreateAffectationView(LoginRequiredMixin, UpdateView):
     def get(self, request, pk):
         collaborateur = Collaborateur.objects.get(pk=pk)
         return render(request, self.template_name, {
-            # This doesn't seem to actually work 😢
             "form": self.form_class(initial={"collaborateur": collaborateur})
             })
 
