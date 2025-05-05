@@ -1,8 +1,11 @@
+from datetime import datetime
+
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import Affectation, Collaborateur, Fonction, Restaurant
 from .forms import AffectationForm, CollaborateurForm, FonctionForm, RestaurantForm, RestaurantDetailsForm
 
@@ -211,6 +214,20 @@ class CreateAffectationView(LoginRequiredMixin, UpdateView):
             # This doesn't seem to actually work 😢
             "form": self.form_class(initial={"collaborateur": collaborateur})
             })
+
+    def post(self, request, pk):
+        collaborateur = Collaborateur.objects.get(pk=pk)
+        restaurant = Restaurant.objects.get(pk=request.POST["restaurant"])
+        fonction = Fonction.objects.get(pk=request.POST["fonction"])
+        debut = datetime.strptime(request.POST["debut"], "%Y-%m-%d")
+        print(request.POST)
+        Affectation.objects.create(
+            collaborateur=collaborateur,
+            restaurant=restaurant,
+            fonction=fonction,
+            debut=debut,
+        )
+        return redirect(self.success_url)
 
 
 class UpdateAffectationView(LoginRequiredMixin, UpdateView):
