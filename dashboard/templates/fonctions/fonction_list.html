@@ -9,8 +9,8 @@
     <button type="submit" class="btn btn-primary mt-2">Rechercher</button>
   </form>
 
+  <a href="{% url 'fonction-new' %}" class="btn btn-primary">Créer une fonction</a>
   {% if fonctions %}
-    <a href="{% url 'fonction-new' %}" class="btn btn-primary">Créer une fonction</a>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>

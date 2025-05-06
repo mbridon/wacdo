@@ -8,9 +8,8 @@
     <input type="text" name="q" class="form-control" placeholder="Rechercher par nom, code postal ou ville..." required>
     <button type="submit" class="btn btn-primary mt-2">Rechercher</button>
   </form>
-
+  <a href="{% url 'restaurant-new' %}" class="btn btn-primary">Créer un restaurant</a>
   {% if restaurants %}
-    <a href="{% url 'restaurant-new' %}" class="btn btn-primary">Créer un restaurant</a>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
