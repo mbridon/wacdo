@@ -78,10 +78,10 @@ WSGI_APPLICATION = "wacdo.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    'default': dj_database_url.config(
+        default='postgresql://wacdo_postgres_user:bbVnvzagaytReWV1ljfS98ArSMNjFDoJ@dpg-d0d3s2pr0fns73bro92g-a/wacdo_postgres',
+        conn_max_age=600
+    )
 }
 
 # Password validation
