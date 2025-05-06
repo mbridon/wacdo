@@ -8,9 +8,8 @@
     <input type="text" name="q" class="form-control" placeholder="Rechercher par nom..." required>
     <button type="submit" class="btn btn-primary mt-2">Rechercher</button>
   </form>
-
+  <a href="{% url 'collaborateur-new' %}" class="btn btn-primary">Créer un collaborateur</a>
   {% if collaborateurs %}
-    <a href="{% url 'collaborateur-new' %}" class="btn btn-primary">Créer un collaborateur</a>
     <a href="{% url 'collaborateur-idle' %}" class="btn btn-secondary">Voir les collaborateurs non affectés</a>
     <table class="table table-bordered table-striped">
       <thead>
