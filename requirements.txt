@@ -1,4 +1,5 @@
 asgiref==3.8.1
+dj-database-url==2.3.0
 Django==5.1.5
 sqlparse==0.5.3
-mysqlclient==2.2.4
+typing_extensions==4.13.2
