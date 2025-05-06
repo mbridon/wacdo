@@ -73,14 +73,13 @@ class FonctionalUXTestCase(TestCase):
             "email": "test@test.com",
             "password": "T35t",
         }
-        self.login_url = reverse("login")
         User.objects.create_user(**self.credentials)
         # Doesn't seem to work? 🤔
         #self.assertEqual(str(self.client.session[SESSION_KEY]), str(self.user.id))
         self.client = Client()
 
     def login(self):
-        return self.client.post(self.login_url, **self.credentials)
+        return self.client.login(**self.credentials)
 
     def test_home_page(self):
         response = self.client.get("/")
