@@ -74,7 +74,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
-
+CSRF_TRUSTED_ORIGINS = ['https://wacdo-production.up.railway.app']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+ALLOWED_HOSTS = ['*']
 # Localization
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
