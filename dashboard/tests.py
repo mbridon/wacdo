@@ -113,3 +113,25 @@ class FonctionalUXTestCase(TestCase):
             "password": "N0m.Pr3n0m",
         })
         self.assertEqual(Collaborateur.objects.filter(email="email1").count(), 1)
+
+    def test_list_restaurants(self):
+        self.login()
+
+        response = self.client.get("/dashboard/restaurant/all")
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "<a href=\"/dashboard/restaurant/new\" class=\"btn btn-primary\">")
+
+    def test_list_fonctions(self):
+        self.login()
+
+        response = self.client.get("/dashboard/fonction/all")
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "<a href=\"/dashboard/fonction/new\" class=\"btn btn-primary\">")
+
+    def test_list_affectations(self):
+        self.login()
+
+        response = self.client.get("/dashboard/affectation/all")
+        self.assertEqual(response.status_code, 200)
+        # Affectations are created through collaborators, not through an API directly on affectations 😉
+        # self.assertContains(response, "<a href=\"/dashboard/affectation/new\" class=\"btn btn-primary\">")
