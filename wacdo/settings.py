@@ -55,12 +55,13 @@ TEMPLATES = [
 WSGI_APPLICATION = "wacdo.wsgi.application"
 
 # Database via Railway
-DATABASES = {
-    'default': dj_database_url.parse(
-        os.getenv("DATABASE_URL", ""), conn_max_age=600
-    )
-}
+DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL is not set. Please configure it in your environment variables.")
 
+DATABASES = {
+    'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+}
 # Authentication redirects
 LOGIN_URL = "/users/login"
 LOGIN_REDIRECT_URL = "home"
