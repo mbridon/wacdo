@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 import dj_database_url
 from pathlib import Path
 
@@ -80,8 +80,8 @@ WSGI_APPLICATION = "wacdo.wsgi.application"
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://wacdo_postgres_user:bbVnvzagaytReWV1ljfS98ArSMNjFDoJ@dpg-d0d3s2pr0fns73bro92g-a/wacdo_postgres',
-        conn_max_age=600
+        default=os.getenv("DATABASE_URL"),  # Railway la fournit automatiquement
+        conn_max_age=600,
     )
 }
 
