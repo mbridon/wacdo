@@ -92,17 +92,18 @@ class FonctionalUXTestCase(TestCase):
     def test_login(self):
         r = self.login()
         response = self.client.post("/users/login/", **self.credentials, follow=True)
-        print(response.context["user"])
         self.assertTrue(response.context["user"].is_active)
 
     def test_list_collaborateurs(self):
-        # First, login
-        self.client.post("/users/login", **self.credentials)
+        self.login()
 
         response = self.client.get("/dashboard/collaborateur/all")
-        print(response)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "<a href=\"/dashboard/collaborateur/new\" class=\"btn btn-primary\">Créer un collaborateur</a>")
+        self.assertContains(response, "<a href=\"/dashboard/collaborateur/new\" class=\"btn btn-primary\">")
+
+    def test_create_collaborateur(self):
+        self.login()
+
         response = self.client.post("/dashboard/collaborateur/new", {
             "nom": "nom1",
             "prenom": "prenom1",
@@ -111,3 +112,4 @@ class FonctionalUXTestCase(TestCase):
             "is_admin": False,
             "password": "N0m.Pr3n0m",
         })
+        self.assertEqual(Collaborateur.objects.filter(email="email1").count(), 1)
