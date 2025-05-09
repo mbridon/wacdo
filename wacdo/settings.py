@@ -9,6 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-key-insecure")  # Remplace en prod
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
+# Just temporarily, so that Railway doesn't mess with debugging
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']  # ou ['tonapp.up.railway.app'] pour plus de sécurité
 
