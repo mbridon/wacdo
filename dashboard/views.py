@@ -219,7 +219,6 @@ class CreateAffectationView(LoginRequiredMixin, UpdateView):
         restaurant = Restaurant.objects.get(pk=request.POST["restaurant"])
         fonction = Fonction.objects.get(pk=request.POST["fonction"])
         debut = datetime.strptime(request.POST["debut"], "%Y-%m-%d")
-        print(request.POST)
         Affectation.objects.create(
             collaborateur=collaborateur,
             restaurant=restaurant,
