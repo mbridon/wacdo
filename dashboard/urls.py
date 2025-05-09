@@ -10,7 +10,7 @@ from .views import (
 urlpatterns = [
     # Affectations
     path("affectation/all", AffectationListView.as_view(), name="affectation-list"),
-    path("affectation/<int:pk>/new", CreateAffectationView.as_view(), name="affectation-new"),
+    path("affectation/new", CreateAffectationView.as_view(), name="affectation-new"),
     path("affectation/<int:pk>/detail/", AffectationDetailsView.as_view(), name="affectation-details"),
     path("affectation/<int:pk>/edit/", UpdateAffectationView.as_view(), name="affectation-update"),
     path("affectation/<int:pk>/delete/", DeleteAffectationView.as_view(), name="affectation-delete"),
