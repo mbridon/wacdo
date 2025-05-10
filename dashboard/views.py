@@ -209,9 +209,9 @@ class CreateAffectationView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("affectation-list")
 
     def get(self, request, pk):
-        collaborateur = Collaborateur.objects.get(pk=pk)
+        restaurant = Restaurant.objects.get(pk=pk)
         return render(request, self.template_name, {
-            "form": self.form_class(initial={"collaborateur": collaborateur})
+            "form": self.form_class(initial={"restaurant": restaurant})
             })
 
     def post(self, request, pk):
