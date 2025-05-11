@@ -13,7 +13,7 @@
   <p><strong>Ville :</strong> {{ affectation.restaurant.city }}</p>
 
   <h3 class="mt-4">Dates :</h3>
-  <span><strong>Début : </strong>{{ affectation.debut }}</span><br />
+  <span><strong>Début : </strong>{{ affectation.debut | date:"d/M/Y" }}</span><br />
   <span><strong>Fin : </strong></span>
   {% if affectation.end %}
     {{ affectation.end|date:"d/m/Y H:i" }}
